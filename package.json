@@ -1,0 +1,10 @@
+{
+    "name": "none",
+    "scripts": {
+        "prepare": "cd stencil/ && cross-env PUPPETEER_SKIP_DOWNLOAD='true' npm i && cd ../next/ && npm i",
+        "start": "cd stencil/ && npm run build && npm link && cd ../next && npm link stencil-compponents && npm run start-custom"
+    },
+    "devDependencies": {
+        "cross-env": "^7.0.3"
+    }
+}
