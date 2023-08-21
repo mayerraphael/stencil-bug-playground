@@ -11,3 +11,6 @@ Install all projects packages:
 Build and start:
 
 `npm start`
+
+
+Be sure to clear the `next/.next` cache folder everytime you change something on the stencil components.

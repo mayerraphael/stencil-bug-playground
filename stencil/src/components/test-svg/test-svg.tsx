@@ -12,11 +12,9 @@ export class TestSvg {
   render() {
     const mySvg = (
       <div class="logo">
-        <svg xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M238.9,95.2h31.4V124h-89.9V0h89v28.8h-30.6v19.8h27.9v26.1h-27.9V95.2z"
-            fill="#FFFFFF"
-          />
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.6875 8.75L15.4844 16.1562L19.8906 16.1562L19.8906 31.25L21.4609 31.25L21.4609 16.1562L25.8437 16.1562L20.6875 8.75Z" fill="black" />
+          <rect x="0.5" y="39.5" width="39" height="39" transform="rotate(-90 0.5 39.5)" stroke="black" />
         </svg>
       </div>
     );
