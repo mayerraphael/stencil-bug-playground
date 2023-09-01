@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 /*!
- Stencil Mock Doc v4.0.5 | MIT Licensed | https://stenciljs.com
+ Stencil Mock Doc v3.4.2 | MIT Licensed | https://stenciljs.com
  */
 const CONTENT_REF_ID = 'r';
 const ORG_LOCATION_ID = 'o';
@@ -4002,11 +4002,9 @@ class MockWindow {
     return {
       media,
       matches: false,
-      addListener: (_handler) => { },
-      removeListener: (_handler) => { },
-      addEventListener: (_type, _handler) => { },
-      removeEventListener: (_type, _handler) => { },
-      dispatchEvent: (_ev) => { },
+      addEventListener,
+      dispatchEvent,
+      removeEventListener,
       onchange: null,
     };
   }
@@ -4950,7 +4948,7 @@ function hydrateFactory($stencilWindow, $stencilHydrateOpts, $stencilHydrateResu
 
 
 const NAMESPACE = 'test';
-const BUILD = /* test */ { allRenderFn: true, appendChildSlotFix: false, asyncLoading: true, attachStyles: true, cloneNodeFix: false, cmpDidLoad: false, cmpDidRender: false, cmpDidUnload: false, cmpDidUpdate: false, cmpShouldUpdate: false, cmpWillLoad: false, cmpWillRender: false, cmpWillUpdate: false, connectedCallback: false, constructableCSS: false, cssAnnotations: true, devTools: false, disconnectedCallback: false, element: false, event: false, hasRenderFn: true, hostListener: false, hostListenerTarget: false, hostListenerTargetBody: false, hostListenerTargetDocument: false, hostListenerTargetParent: false, hostListenerTargetWindow: false, hotModuleReplacement: false, hydrateClientSide: true, hydrateServerSide: true, hydratedAttribute: false, hydratedClass: true, isDebug: false, isDev: false, isTesting: false, lazyLoad: true, lifecycle: false, lifecycleDOMEvents: false, member: true, method: false, mode: false, observeAttribute: true, profile: false, prop: true, propBoolean: true, propMutable: false, propNumber: false, propString: false, reflect: false, scoped: false, scriptDataOpts: false, shadowDelegatesFocus: false, shadowDom: true, shadowDomShim: true, slot: false, slotChildNodesFix: false, slotRelocation: true, state: false, style: true, svg: true, taskQueue: true, updatable: true, vdomAttribute: true, vdomClass: true, vdomFunctional: false, vdomKey: false, vdomListener: false, vdomPropOrAttr: true, vdomRef: false, vdomRender: true, vdomStyle: false, vdomText: true, vdomXlink: false, watchCallback: false };
+const BUILD = /* test */ { allRenderFn: true, appendChildSlotFix: false, asyncLoading: true, attachStyles: true, cloneNodeFix: false, cmpDidLoad: false, cmpDidRender: false, cmpDidUnload: false, cmpDidUpdate: false, cmpShouldUpdate: false, cmpWillLoad: false, cmpWillRender: false, cmpWillUpdate: false, connectedCallback: false, constructableCSS: false, cssAnnotations: true, cssVarShim: false, devTools: false, disconnectedCallback: false, dynamicImportShim: false, element: false, event: false, hasRenderFn: true, hostListener: false, hostListenerTarget: false, hostListenerTargetBody: false, hostListenerTargetDocument: false, hostListenerTargetParent: false, hostListenerTargetWindow: false, hotModuleReplacement: false, hydrateClientSide: true, hydrateServerSide: true, hydratedAttribute: false, hydratedClass: true, isDebug: false, isDev: false, isTesting: false, lazyLoad: true, lifecycle: false, lifecycleDOMEvents: false, member: true, method: false, mode: false, observeAttribute: true, profile: false, prop: true, propBoolean: true, propMutable: false, propNumber: false, propString: false, reflect: false, safari10: false, scoped: false, scriptDataOpts: false, shadowDelegatesFocus: false, shadowDom: true, shadowDomShim: true, slot: false, slotChildNodesFix: false, slotRelocation: true, state: false, style: true, svg: true, taskQueue: true, updatable: true, vdomAttribute: true, vdomClass: true, vdomFunctional: false, vdomKey: false, vdomListener: false, vdomPropOrAttr: true, vdomRef: false, vdomRender: true, vdomStyle: false, vdomText: true, vdomXlink: false, watchCallback: false };
 
 function queryNonceMetaTagContent(e) {
  var t, o, n;
@@ -5219,23 +5217,24 @@ const createTime = (e, t = "") => {
 }, rootAppliedStyles = new WeakMap, registerStyle = (e, t, o) => {
  let n = styles.get(e);
  n = t, styles.set(e, n);
-}, addStyle = (e, t, o) => {
- var n;
- const s = getScopeId(t), l = styles.get(s);
- if (e = 11 === e.nodeType ? e : doc, l) if ("string" == typeof l) {
+}, addStyle = (e, t, o, n) => {
+ var s;
+ let l = getScopeId(t);
+ const a = styles.get(l);
+ if (e = 11 === e.nodeType ? e : doc, a) if ("string" == typeof a) {
   e = e.head || e;
-  let t, o = rootAppliedStyles.get(e);
-  if (o || rootAppliedStyles.set(e, o = new Set), !o.has(s)) {
-   if (e.host && (t = e.querySelector(`[sty-id="${s}"]`))) t.innerHTML = l; else {
-    t = doc.createElement("style"), t.innerHTML = l;
-    const o = null !== (n = plt.$nonce$) && void 0 !== n ? n : queryNonceMetaTagContent(doc);
-    null != o && t.setAttribute("nonce", o), t.setAttribute("sty-id", s), 
-    e.insertBefore(t, e.querySelector("link"));
+  let o, r = rootAppliedStyles.get(e);
+  if (r || rootAppliedStyles.set(e, r = new Set), !r.has(l)) {
+   if (e.host && (o = e.querySelector(`[sty-id="${l}"]`))) o.innerHTML = a; else {
+    o = doc.createElement("style"), o.innerHTML = a;
+    const i = null !== (s = plt.$nonce$) && void 0 !== s ? s : queryNonceMetaTagContent(doc);
+    null != i && o.setAttribute("nonce", i), o.setAttribute("sty-id", l), 
+    e.insertBefore(o, e.querySelector("link"));
    }
-   o && o.add(s);
+   r && r.add(l);
   }
  }
- return s;
+ return l;
 }, attachStyles = e => {
  const t = e.$cmpMeta$, o = e.$hostElement$, n = t.$flags$, s = createTime("attachStyles", t.$tagName$), l = addStyle(o.getRootNode(), t);
  10 & n && (o["s-sc"] = l, 
@@ -5358,33 +5357,32 @@ const createElm = (e, t, o, n) => {
   }));
   1 === t.nodeType && relocateSlotContent(t);
  }
-}, isNodeLocatedInSlot = (e, t) => 1 === e.nodeType ? null === e.getAttribute("slot") && "" === t || e.getAttribute("slot") === t : e["s-sn"] === t || "" === t, renderVdom = (e, t, o = !1) => {
- const n = e.$hostElement$, l = e.$vnode$ || newVNode(null, null), a = isHost(t) ? t : h(null, null, t);
- if (hostTagName = n.tagName, BUILD.isDev  ) ;
- if (o && a.$attrs$) for (const e of Object.keys(a.$attrs$)) n.hasAttribute(e) && ![ "key", "ref", "style", "class" ].includes(e) && (a.$attrs$[e] = n[e]);
- if (a.$tag$ = null, a.$flags$ |= 4, e.$vnode$ = a, a.$elm$ = l.$elm$ = n.shadowRoot || n, 
- (scopeId = n["s-sc"]), (contentRef = n["s-cr"], 
- useNativeShadowDom = supportsShadow, checkSlotFallbackVisibility = !1), patch(l, a), 
+}, isNodeLocatedInSlot = (e, t) => 1 === e.nodeType ? null === e.getAttribute("slot") && "" === t || e.getAttribute("slot") === t : e["s-sn"] === t || "" === t, renderVdom = (e, t) => {
+ const o = e.$hostElement$, s = e.$vnode$ || newVNode(null, null), l = isHost(t) ? t : h(null, null, t);
+ if (hostTagName = o.tagName, BUILD.isDev  ) ;
+ if (l.$tag$ = null, l.$flags$ |= 4, e.$vnode$ = l, l.$elm$ = s.$elm$ = o.shadowRoot || o, 
+ (scopeId = o["s-sc"]), (contentRef = o["s-cr"], 
+ useNativeShadowDom = supportsShadow, checkSlotFallbackVisibility = !1), patch(s, l), 
  BUILD.slotRelocation) {
   if (plt.$flags$ |= 1, checkSlotRelocate) {
-   let e, t, o, n, s, l;
-   relocateSlotContent(a.$elm$);
+   let e, t, o, n, s, a;
+   relocateSlotContent(l.$elm$);
    let r = 0;
    for (;r < relocateNodes.length; r++) e = relocateNodes[r], t = e.$nodeToRelocate$, 
    t["s-ol"] || (o = originalLocationDebugNode(t) , 
    o["s-nr"] = t, t.parentNode.insertBefore(t["s-ol"] = o, t));
    for (r = 0; r < relocateNodes.length; r++) if (e = relocateNodes[r], t = e.$nodeToRelocate$, 
    e.$slotRefNode$) {
-    for (n = e.$slotRefNode$.parentNode, s = e.$slotRefNode$.nextSibling, o = t["s-ol"]; o = o.previousSibling; ) if (l = o["s-nr"], 
-    l && l["s-sn"] === t["s-sn"] && n === l.parentNode && (l = l.nextSibling, !l || !l["s-nr"])) {
-     s = l;
+    for (n = e.$slotRefNode$.parentNode, s = e.$slotRefNode$.nextSibling, o = t["s-ol"]; o = o.previousSibling; ) if (a = o["s-nr"], 
+    a && a["s-sn"] === t["s-sn"] && n === a.parentNode && (a = a.nextSibling, !a || !a["s-nr"])) {
+     s = a;
      break;
     }
     (!s && n !== t.parentNode || t.nextSibling !== s) && t !== s && (!t["s-hn"] && t["s-ol"] && (t["s-hn"] = t["s-ol"].parentNode.nodeName), 
     n.insertBefore(t, s));
    } else 1 === t.nodeType && (t.hidden = !0);
   }
-  checkSlotFallbackVisibility && updateFallbackSlotVisibility(a.$elm$), plt.$flags$ &= -2, 
+  checkSlotFallbackVisibility && updateFallbackSlotVisibility(l.$elm$), plt.$flags$ &= -2, 
   relocateNodes.length = 0;
  }
 }, slotReferenceDebugNode = e => doc.createComment(`<slot${e.$name$ ? ' name="' + e.$name$ + '"' : ""}> (host=${hostTagName.toLowerCase()})`), originalLocationDebugNode = e => doc.createComment("org-location for " + (e.localName ? `<${e.localName}> (host=${e["s-hn"]})` : `[${e.textContent}]`)), attachToAncestor = (e, t) => {
@@ -5403,7 +5401,7 @@ const createElm = (e, t, o, n) => {
  const s = e.$hostElement$, l = createTime("update", e.$cmpMeta$.$tagName$), a = s["s-rc"];
  o && attachStyles(e);
  const r = createTime("render", e.$cmpMeta$.$tagName$);
- if (await callRender(e, t, s, o) , 
+ if (await callRender(e, t) , 
  BUILD.hydrateServerSide) try {
   serverSideConnected(s), o && (1 & e.$cmpMeta$.$flags$ ? s["s-en"] = "" : 2 & e.$cmpMeta$.$flags$ && (s["s-en"] = "c"));
  } catch (e) {
@@ -5416,11 +5414,11 @@ const createElm = (e, t, o, n) => {
  }
 };
 
-const callRender = (e, t, o, n) => {
+const callRender = (e, t, o) => {
  try {
   if (t = t.render(), (e.$flags$ &= -17), 
   (e.$flags$ |= 2), BUILD.hasRenderFn ) {
-   return Promise.resolve(t).then((t => renderVdom(e, t, n)));
+   return Promise.resolve(t).then((t => renderVdom(e, t)));
   }
  } catch (t) {
   consoleError(t, e.$hostElement$);
@@ -5516,7 +5514,7 @@ const callRender = (e, t, o, n) => {
 }, connectedCallback = e => {
  if (0 == (1 & plt.$flags$)) {
   const t = getHostRef(e), o = t.$cmpMeta$, n = createTime("connectedCallback", o.$tagName$);
-  if (1 & t.$flags$) (null == t ? void 0 : t.$lazyInstance$) ? fireConnectedCallback() : (null == t ? void 0 : t.$onReadyPromise$) && t.$onReadyPromise$.then((() => fireConnectedCallback())); else {
+  if (1 & t.$flags$) ; else {
    let n;
    if (t.$flags$ |= 1, (n = e.getAttribute("s-id"), n)) {
     ((e, t, o, n) => {
